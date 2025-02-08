@@ -30,14 +30,16 @@ const dispatch = useDispatch();
             <Link to="/" className="hover:text-green-300 transition duration-300">Home</Link>
             <Link to="/about" className="hover:text-green-300 transition duration-300">About</Link>
             <Link to="/vote" className="hover:text-green-300 transition duration-300">Go Vote</Link>
+            
             {userinfo ?
               <>
+            
+            <Link to="/addCandidate" className="hover:text-green-300 transition duration-300">Add Candidate</Link>
               <div onClick={logOut} className="bg-yellow-400 cursor-pointer text-green-900 px-4 py-2 rounded-lg hover:bg-yellow-500 transition">LogOut</div>
             
 
               </> :
               <>
-                <div onClick={() => setSignup(!signup)} className="bg-yellow-200 cursor-pointer text-green-900 px-4 py-2 rounded-lg hover:bg-yellow-500 transition">signup</div>
                 <div onClick={() => setLogin(!login)} className="bg-yellow-400 cursor-pointer text-green-900 px-4 py-2 rounded-lg hover:bg-yellow-500 transition">Login</div>
               </>}
           </div>
@@ -57,7 +59,7 @@ const dispatch = useDispatch();
           <Link to="/" className="block px-4 py-2 hover:bg-green-700 rounded">Home</Link>
           <Link to="/about" className="block px-4 py-2 hover:bg-green-700 rounded">About</Link>
           <Link to="/vote" className="block px-4 py-2 hover:bg-green-700 rounded">Go Vote</Link>
-          <div onClick={() => setSignup(!signup)} className="block px-4 py-2 bg-yellow-400 text-green-900 rounded-lg hover:bg-yellow-500 transition">signup</div>
+          {/* <div onClick={() => setSignup(!signup)} className="block px-4 py-2 bg-yellow-400 text-green-900 rounded-lg hover:bg-yellow-500 transition">signup</div> */}
 
           <span onClick={() => setLogin(!login)} className="block px-4 py-2 bg-yellow-400 text-green-900 rounded-lg hover:bg-yellow-500 transition">Login</span>
 

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Im
 import Home from '../home/Home';
 import Vote from '../vote/Vote';
 import About from '../about/About';
+import AddCandidates from '../addCandidate/AddCandidates';
 
 export default function Routing() {
     return (
@@ -11,6 +12,7 @@ export default function Routing() {
                 <Route path="/" element={<Home />} />
                 <Route path="/vote" element={<Vote/>} />
                 <Route path="/about" element={<About/>} />
+                <Route path="/addCandidate" element={<AddCandidates/>} />
             </Routes>
         </Router>
     );
