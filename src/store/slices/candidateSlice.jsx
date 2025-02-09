@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { db } from "../../config/config";
 export const addCand = createAsyncThunk(
     "collections/addCollection",
@@ -19,7 +19,21 @@ console.log("data",collectionRef);
       }
     }
   );
-
+export const deleteCand = createAsyncThunk(
+  "collections/deletedoc",
+  async (docName)=>{
+    try {
+      console.log("delele");
+      
+      const docRef = doc(db, "candidate", docName);
+       await deleteDoc(docRef);
+       return docName ;
+      
+    } catch (error) {
+      
+    }
+  }
+)
   export const getCand = createAsyncThunk(
     "collections/getCollection",
     async()=>{
@@ -55,6 +69,10 @@ const candidateSlice = createSlice({
           console.log("candidate ",state.candidate);
           
         })
+        .addCase( deleteCand.fulfilled, (state, action) => {
+          state.candidate = state.candidate.filter((item) => item.id !== action.payload);
+        })
+        
     }
 })
 export default candidateSlice.reducer;

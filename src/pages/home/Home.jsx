@@ -9,7 +9,7 @@ export default function Home() {
     <div className='bg-white container'>
         <div className='mb-1'>
         <Navbar  />
-        {/* <Hero/> */}
+        <Hero/>
         <Results/>
         <Footer/>
         

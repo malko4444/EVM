@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCand } from "../../store/slices/candidateSlice";
+import { deleteCand, getCand } from "../../store/slices/candidateSlice";
 import { FaUserTie } from "react-icons/fa"; // Candidate icon
 import { MdWork } from "react-icons/md"; // Work icon
 import { BsBarChartFill } from "react-icons/bs"; // Vote icon
@@ -12,6 +12,11 @@ export default function Results() {
     
   const candidates = useSelector((state) => state.candidateSlice.candidate);
   const dispatch = useDispatch();
+  const deletCandidate = (id) => {
+    console.log("name of deleted candidate ", id);
+    dispatch(deleteCand(id))
+    
+  }
 
   useEffect(() => {
     dispatch(getCand()); // Fetch candidates when component mounts
@@ -54,7 +59,10 @@ export default function Results() {
               <button onClick={()=>deleteCand (cand.id)} className="flex items-center space-x-1 bg-red-500 hover:bg-red-700 text-white px-3 py-1 rounded-md shadow-md">
               <AiFillDelete className="text-lg" />
               <span>Delete</span>
-            </button>:""}
+            </button>:<button onClick={()=>deletCandidate (cand.id)} className="flex items-center space-x-1 bg-red-500 hover:bg-red-700 text-white px-3 py-1 rounded-md shadow-md">
+              <AiFillDelete className="text-lg" />
+              <span>Delete</span>
+            </button>}
             </div>
           ))
         ) : (
