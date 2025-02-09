@@ -8,12 +8,22 @@ export default function Candidate() {
   const dispatch = useDispatch();
 
   const addCollection = () => {
+    if (!candidate.trim() || !work.trim()) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
     const newCandidate = {
       name: candidate,
       work: work,
     };
+
     console.log("candidate", candidate);
     dispatch(addCand(newCandidate));
+
+    // Clear input fields after adding candidate
+    setCandidate("");
+    setWork("");
   };
 
   return (

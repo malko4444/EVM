@@ -1,14 +1,19 @@
 import React, { useRef, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userLogin } from '../../store/slices/authSlice';
 
 export default function ({ onClose }) {
+  const userInfo = useSelector( state => state.authSlice.user );
+    if(userInfo) {
+      onClose();
+    }
   const dispatch = useDispatch();
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
   const modelref = useRef();
   const loginShow = (e) => {
+    
     if (modelref.current === e.target) {
       onClose();
     }

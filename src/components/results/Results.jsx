@@ -8,6 +8,8 @@ import { AiFillDelete } from "react-icons/ai"; // Delete icon
 
 export default function Results() {
     const userinfo = useSelector(state => state.authSlice.user);
+    console.log("user ",userinfo);
+    
     console.log("user in result",userinfo);
     
   const candidates = useSelector((state) => state.candidateSlice.candidate);
@@ -55,14 +57,11 @@ export default function Results() {
               </div>
 
               {/* Delete Button */}
-              {userinfo? 
-              <button onClick={()=>deleteCand (cand.id)} className="flex items-center space-x-1 bg-red-500 hover:bg-red-700 text-white px-3 py-1 rounded-md shadow-md">
+              {userinfo?.uid == "HPMcR8BrZkXL0r3uz89SId8BAWZ2"? 
+              <button onClick={()=>deletCandidate (cand.id)} className="flex items-center space-x-1 bg-red-500 hover:bg-red-700 text-white px-3 py-1 rounded-md shadow-md">
               <AiFillDelete className="text-lg" />
               <span>Delete</span>
-            </button>:<button onClick={()=>deletCandidate (cand.id)} className="flex items-center space-x-1 bg-red-500 hover:bg-red-700 text-white px-3 py-1 rounded-md shadow-md">
-              <AiFillDelete className="text-lg" />
-              <span>Delete</span>
-            </button>}
+            </button>:""}
             </div>
           ))
         ) : (

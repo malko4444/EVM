@@ -36,13 +36,13 @@ export default function Navbar() {
 
                 <Link to="/addCandidate" className="hover:text-green-300 transition duration-300">Add Candidate</Link>
                 <div onClick={logOut} className="bg-yellow-400 cursor-pointer text-green-900 px-4 py-2 rounded-lg hover:bg-yellow-500 transition">LogOut</div>
+                <div onClick={() => setSignup(!signup)} className="bg-yellow-400 cursor-pointer text-green-900 px-4 py-2 rounded-lg hover:bg-yellow-500 transition">Signup</div>
 
 
               </> :
               <>
                 <div onClick={() => setLogin(!login)} className="bg-yellow-400 cursor-pointer text-green-900 px-4 py-2 rounded-lg hover:bg-yellow-500 transition">Login</div>
-                <div onClick={() => setSignup(!signup)} className="bg-yellow-400 cursor-pointer text-green-900 px-4 py-2 rounded-lg hover:bg-yellow-500 transition">Signup</div>
-
+               
               </>}
           </div>
 
@@ -72,11 +72,10 @@ export default function Navbar() {
           </>
             :<>
             <Link to="/addCandidate" className="hover:text-green-300 transition duration-300">Add Candidate</Link>
-                
+            {signup && <Signup onClose={() => setSignup(false)} />}   
             <div onClick={logOut} className="bg-yellow-400 cursor-pointer text-green-900 px-4 py-2 rounded-lg hover:bg-yellow-500 transition">LogOut</div>
 
-            </>
-            }
+            </>}
         </div>
       )}
       {login && <Login onClose={() => setLogin(false)} />}
