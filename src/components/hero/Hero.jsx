@@ -75,7 +75,7 @@ export default function Hero() {
         {/* Overlay Text */}
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <h1 className="text-white text-4xl md:text-6xl font-bold text-center">
-            Welcome to Electronic Voting Machine
+            Welcome to Online Voting System
           </h1>
         </div>
       </div>

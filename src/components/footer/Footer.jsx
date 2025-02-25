@@ -30,9 +30,9 @@ export default function Footer() {
           {/* Contact Section */}
           <div>
             <h2 className="text-xl font-bold uppercase border-b-2 border-green-400 inline-block pb-1 mb-4">Contact Us</h2>
-            <p className="text-gray-300 flex items-center justify-center md:justify-start"><FaMapMarkerAlt className="mr-2"/> Islamabad, Pakistan</p>
-            <p className="text-gray-300 flex items-center justify-center md:justify-start"><FaPhone className="mr-2"/> +92 300 1234567</p>
-            <p className="text-gray-300 flex items-center justify-center md:justify-start"><FaEnvelope className="mr-2"/> info@evm.pk</p>
+            <p className="text-gray-300 flex items-center justify-center md:justify-start"><FaMapMarkerAlt className="mr-2"/> Faisalabad, Pakistan</p>
+            <p className="text-gray-300 flex items-center justify-center md:justify-start"><FaPhone className="mr-2"/> +92 3475548988</p>
+            <p className="text-gray-300 flex items-center justify-center md:justify-start"><FaEnvelope className="mr-2"/> info@ovs.pk</p>
           </div>
 
         </div>

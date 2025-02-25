@@ -23,7 +23,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
 
           {/* Logo */}
-          <h1 className="text-2xl font-bold text-yellow-400">EVM Pakistan</h1>
+          <h1 className="text-2xl font-bold text-yellow-400">OVS Pakistan</h1>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-6">
