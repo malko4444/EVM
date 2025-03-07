@@ -95,12 +95,13 @@ export const userLogout  = createAsyncThunk(
 
 const authSlice = createSlice({
     name: 'auth',
-    initialState: { user: null, status: null },
+    initialState: {user: null, status: null },
     reducers:{
         setUser: (state, action) => {
             state.user = action.payload;
             console.log("UserData that user signup",state.user)
         },
+        
         
     },
     extraReducers : (builder) => {

@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, increment, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/config";
+
 export const addCand = createAsyncThunk(
     "collections/addCollection",
     async (newCandidate, { rejectWithValue }) => {
@@ -56,6 +57,7 @@ export const deleteCand = createAsyncThunk(
     }
   )
 
+
 export const addVote = createAsyncThunk(
   "collections/addVote",
   async (userData, { rejectWithValue }) => {
@@ -64,27 +66,32 @@ export const addVote = createAsyncThunk(
 
       const voterRef = doc(db, "cnic", "data"); // Reference to the document "data"
       const voterSnap = await getDoc(voterRef);
+      console.log("data",voterSnap);
+      
 
       if (voterSnap.exists()) {
         const existingData = voterSnap.data();
         const existingCNICs = existingData.cnic || [];
 
         // Check if user CNIC already exists
-        if (existingCNICs.includes(userData.cnic)) {
+        const randomCnic = Math.floor(1000000000000 + Math.random() * 9000000000000); // 13-digit number
+console.log(randomCnic);
+
+        if (existingCNICs.includes(randomCnic)) {
           return rejectWithValue("You have already voted.");
         }
 
         // Append new CNIC to the array
         await updateDoc(voterRef, {
-          cnic: arrayUnion(userData.cnic), // Firebase method to add unique values to an array
+          cnic: arrayUnion(randomCnic), // Firebase method to add unique values to an array
         });
       } else {
         // Create the "data" document if it doesn't exist
-        await setDoc(voterRef, { cnic: [userData.cnic] });
+        await setDoc(voterRef, { cnic: [randomCnic] });
       }
 
       // Increment the vote count for the candidate
-      const candidateRef = doc(db, "candidate", userData.selectedCandidate);
+      const candidateRef = doc(db, "candidate", userData.candidate);
       const candidateSnap = await getDoc(candidateRef);
       console.log("candidateSnap",candidateSnap);
       
@@ -109,7 +116,17 @@ export const addVote = createAsyncThunk(
   
 const candidateSlice = createSlice({
     name: 'candidate',
-    initialState: { candidate: [], status: null },
+    initialState: { face : null,candidate: [], status: null },
+    reducers: {
+      
+      setFace:(state,action)=>{
+        console.log("face detection",action.payload);
+        
+        state.face = action.payload
+        console.log("face in slice",state.face.features);
+        
+    }
+    },
     extraReducers : (builder) => {builder
         .addCase (addCand.fulfilled, (state, action) => {
             state.candidate = [... state.candidate,action.payload]
@@ -128,3 +145,4 @@ const candidateSlice = createSlice({
     }
 })
 export default candidateSlice.reducer;
+export const { setFace } = candidateSlice.actions;
